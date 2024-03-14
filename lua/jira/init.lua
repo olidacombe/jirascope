@@ -10,10 +10,15 @@ local issue_summary = function(issue)
 	return issue["key"] .. ": " .. issue["fields"]["summary"]
 end
 
+local config = {}
+
 local M = {}
 
 M.issues = function(opts)
 	opts = opts or {}
+
+	local projects = opts.projects or config.projects
+
 	opts.entry_maker = opts.entry_maker
 		or function(entry)
 			local issue = json.decode(entry)
@@ -24,14 +29,18 @@ M.issues = function(opts)
 				ordinal = display,
 			}
 		end
+	local args = {}
+	if projects then
+		table.insert(args, "-p")
+		table.insert(args, table.concat(projects, ","))
+	end
+	P(args)
 	pickers
 		.new(opts, {
 			prompt_title = "issues",
 			finder = finders.new_oneshot_job({
 				"dgira",
-				-- TODO args from opts
-				-- "-p",
-				-- "intg",
+				table.unpack(args),
 			}, opts),
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function(prompt_bufnr, map)
@@ -46,6 +55,12 @@ M.issues = function(opts)
 			end,
 		})
 		:find()
+end
+
+M.setup = function(ext_config, global_config)
+	if ext_config.projects then
+		config.projects = ext_config.projects
+	end
 end
 
 return M

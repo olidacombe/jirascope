@@ -4,10 +4,10 @@ if not has_telescope then
 	error("jirascope requires nvim-telescope/telescope.nvim")
 end
 
+local jira = require("jira")
+
 return telescope.register_extension({
-	-- setup = function(ext_config, config)
-	--     -- access extension config and user config
-	-- end,
+	setup = jira.setup,
 	exports = {
 		jira = require("jira").issues,
 	},
