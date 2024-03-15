@@ -39,12 +39,12 @@ M.issues = function(opts)
 		table.insert(args, "-p")
 		table.insert(args, table.concat(projects, ","))
 	end
-	P(args)
 	pickers
 		.new(opts, {
 			prompt_title = "issues",
 			finder = finders.new_oneshot_job({
-				"dgira",
+				"dgira", -- get issues
+				"-c", -- use compact output
 				table.unpack(args),
 			}, opts),
 			sorter = conf.generic_sorter(opts),
