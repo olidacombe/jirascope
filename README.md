@@ -33,6 +33,7 @@ telescope.setup({
     extensions = {
         ...
         jira = {
+            limit = 1000, -- max results to fetch
             projects = { -- limit to a restricted set of projects within your org
                 "ABCD",
                 "EFGH"

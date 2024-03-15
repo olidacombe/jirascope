@@ -17,6 +17,7 @@ local M = {}
 M.issues = function(opts)
 	opts = opts or {}
 
+	local limit = opts.limit or config.limit
 	local projects = opts.projects or config.projects
 
 	opts.entry_maker = opts.entry_maker
@@ -30,6 +31,10 @@ M.issues = function(opts)
 			}
 		end
 	local args = {}
+	if limit then
+		table.insert(args, "-l")
+		table.insert(args, limit)
+	end
 	if projects then
 		table.insert(args, "-p")
 		table.insert(args, table.concat(projects, ","))
@@ -58,6 +63,9 @@ M.issues = function(opts)
 end
 
 M.setup = function(ext_config, global_config)
+	if ext_config.limit then
+		config.limit = ext_config.limit
+	end
 	if ext_config.projects then
 		config.projects = ext_config.projects
 	end
