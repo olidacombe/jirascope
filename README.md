@@ -10,6 +10,13 @@ Requires [dgira](https://github.com/olidacombe/dgira) and [refalizer](https://gi
 cargo install dgira refalizer
 ```
 
+or for [homebrew](https://brew.sh/) users these are available in the [productivity-tools tap](https://github.com/olidacombe/homebrew-productivity-tools):
+
+```bash
+brew tap olidacombe/productivity-tools
+brew install dgira refalizer
+```
+
 ### Lazy.nvim
 
 ```lua
