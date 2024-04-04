@@ -48,6 +48,8 @@ telescope.setup({
         }
     }
 })
+
+telescope.load_extension("jira")
 ```
 
 ## Usage
