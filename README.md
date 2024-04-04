@@ -28,6 +28,8 @@ brew install dgira refalizer
 }
 ```
 
+Although not required, installing something like [dressing.nvim](https://github.com/stevearc/dressing.nvim) is highly desirable.
+
 ## Setup
 
 This is optional, you can skip this if you're happy to search all issues in Jira all the time.
