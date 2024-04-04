@@ -56,6 +56,6 @@ telescope.setup({
 -- keymap for default options
 vim.keymap.set("n", "<leader>fj", "<cmd>Telescope jira<cr>", "Find Jira")
 -- some mappings for other options
-vim.keymap.set("n", "<leader>fz", function() require("telescope").extensions.jira.jira({projects={"FRNT"}}) end, "Find Frontend Jira")
-vim.keymap.set("n", "<leader>fr", function() require("telescope").extensions.jira.jira({projects={"BACK","INFR"}}) end, "Find Backend Jira")
+vim.keymap.set("n", "<leader>fz", function() require("telescope").extensions.jira.jira({projects={"FRNT"}}) end, {delc = "Find Frontend Jira"})
+vim.keymap.set("n", "<leader>fr", function() require("telescope").extensions.jira.jira({projects={"BACK","INFR"}}) end, {desc = "Find Backend Jira"})
 ```
