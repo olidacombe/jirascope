@@ -6,12 +6,12 @@ local action_state = require("telescope.actions.state")
 local json = require("jira.json")
 local git = require("jira.git")
 
-local truncate_at_newline = function(line)
-    return line:gsub('\n.*', '...')
+local strip_newlines = function(line)
+    return line:gsub('\n', ' ')
 end
 
 local issue_summary = function(issue)
-    return issue["key"] .. ": " .. truncate_at_newline(issue["fields"]["summary"])
+    return issue["key"] .. ": " .. strip_newlines(issue["fields"]["summary"])
 end
 
 local config = {}
