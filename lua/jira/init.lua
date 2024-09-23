@@ -6,8 +6,12 @@ local action_state = require("telescope.actions.state")
 local json = require("jira.json")
 local git = require("jira.git")
 
+local truncate_at_newline = function(line)
+    return line:gsub('\n.*', '...')
+end
+
 local issue_summary = function(issue)
-    return issue["key"] .. ": " .. issue["fields"]["summary"]
+    return issue["key"] .. ": " .. truncate_at_newline(issue["fields"]["summary"])
 end
 
 local config = {}
@@ -46,7 +50,7 @@ M.issues = function(opts)
             prompt_title = "issues",
             finder = finders.new_oneshot_job({
                 "dgira", -- get issues
-                "-c", -- use compact output
+                "-c",    -- use compact output
                 table.unpack(args),
             }, opts),
             sorter = conf.generic_sorter(opts),
